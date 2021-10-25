@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
 import Home from '../views/Home.vue'
+import AddUnicorn from '../components/AddUnicorn.vue'
 
 Vue.use(VueRouter)
 
@@ -9,7 +10,12 @@ const routes: Array<RouteConfig> = [
     path: '/',
     name: 'Home',
     component: Home
-  }
+  },
+   {
+     path: '/add',
+     name: 'Add',
+     component: AddUnicorn
+   }
   // ,
   // {
   //   path: '/about',
