@@ -1,5 +1,28 @@
 <template>
-<p>asda</p>
+<div id="app">
+  <v-app id="inspire">
+    <form>
+      <v-text-field
+        v-model="unicorn.name"
+        label="Name"
+      ></v-text-field>
+      <v-text-field
+        v-model="unicorn.colour"
+        label="Color"
+      ></v-text-field>
+      <v-text-field
+        v-model="unicorn.age"
+        label="Age"
+      ></v-text-field>
+      <v-btn
+        class="mr-4"
+        @click="saveTutorial"
+      >
+        submit
+      </v-btn>
+    </form>
+  </v-app>
+</div>
 </template>
 
 <script lang="ts">
@@ -10,10 +33,10 @@ import Unicorn from "@/types/Unicorn";
 @Component
 export default class AddUnicorn extends Vue {
   private unicorn: Unicorn = {
-    id: null,
-    name: "",
+    id: "",
+    name: "a",
     age: 0,
-    color: "",
+    colour: "a",
   };
 
 //   private submitted: boolean = false;
@@ -21,25 +44,22 @@ export default class AddUnicorn extends Vue {
   saveTutorial() {
     let data = {
       name: this.unicorn.name,
-      color: this.unicorn.color,
-      age:this.unicorn.age,
-      id:this.unicorn.id
+      colour: this.unicorn.colour,
+      age:this.unicorn.age
     };
 
-    // UnicornDataService.create(data)
-    //   .then((response) => {
-    //     this.unicorn.id = response.data.id;
-    //     console.log(response.data);
-    //     this.submitted = true;
-    //   })
-    //   .catch((e) => {
-    //     console.log(e);
-    //   });
-  }
+    console.log(data)
 
-  newTutorial() {
-    // this.submitted = false;
-    this.unicorn = {} as Unicorn;
+    UnicornDataService.create(data)
+      .then((response: any) => {
+        this.unicorn.id = response.data.id as string;
+        console.log(response.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+
+      console.log(this.unicorn.name)
   }
 }
 </script>
@@ -48,5 +68,12 @@ export default class AddUnicorn extends Vue {
 .submit-form {
   max-width: 300px;
   margin: auto;
+}
+
+#app{
+  display: block;
+  justify-content: center;
+  margin: 50px 200px 50px 200px;
+  
 }
 </style>

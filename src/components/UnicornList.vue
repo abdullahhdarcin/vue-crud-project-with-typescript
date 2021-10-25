@@ -5,7 +5,7 @@
     sort-by="calories"
     class="elevation-1">
 
-    
+
       <template v-slot:top>
       <v-toolbar
         flat
@@ -47,23 +47,18 @@
       <v-icon
         small
         class="mr-2"
+        to="'/unicorns/' + currentUnicorn.id "
         @click="editItem(item)"
       >
         mdi-pencil
-      </v-icon>
-      <v-icon
-        small
-        @click="deleteItem(item)"
-      >
-        mdi-delete
       </v-icon>
     </template>
     <template v-slot:no-data>
       <v-btn
         color="primary"
-        @click="initialize"
+        @click="removeUnicorn"
       >
-        Reset
+        
       </v-btn>
     </template>
   </v-data-table>
@@ -78,6 +73,7 @@ import Unicorn from "@/types/Unicorn";
 @Component
 export default class UnicornList extends Vue {
   private unicorn: Unicorn[] = [];
+  private currentUnicorn = {} as Unicorn
 
     data(){
         return{
@@ -101,6 +97,29 @@ export default class UnicornList extends Vue {
         console.log(e);
       });
   }
+
+
+//   getUnicorn(id: string) {
+//     UnicornDataService.get(id)
+//       .then((response) => {
+//         this.currentUnicorn.id = response.data as string;
+//         console.log(response.data);
+//       })
+//       .catch((e) => {
+//         console.log(e);
+//       });
+//   }
+
+//   removeUnicorn(id: string) {
+//     UnicornDataService.delete(this.currentUnicorn.id)
+//       .then((response) => {
+//         console.log(response.data);
+//         this.$router.push({name: "unicorns"})
+//       })
+//       .catch((e) => {
+//         console.log(e);
+//       });
+//}
 
   mounted() {
     this.retrieveUnicorns();
