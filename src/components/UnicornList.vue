@@ -1,5 +1,11 @@
 <template>
-<p>asd</p>
+  <v-data-table
+    :headers="headers"
+    :items="unicorn"
+    :items-per-page="5"
+    class="elevation-1"
+    v-model="unicorn"
+  ></v-data-table>
 </template>
 
 <script lang="ts">
@@ -10,6 +16,21 @@ import Unicorn from "@/types/Unicorn";
 @Component
 export default class UnicornList extends Vue {
   private unicorn: Unicorn[] = [];
+
+    data(){
+        return{
+        
+        headers: [
+          { text: 'ID', value: '_id' },       
+          { text: 'Name', value: 'name' },
+          { text: 'Color', value: 'colour' },
+          { text: 'Age', value: 'age' }
+            ],
+          name:[
+
+          ]  
+        }
+    }
 
   retrieveUnicorns() {
     UnicornDataService.getAll()
@@ -24,6 +45,8 @@ export default class UnicornList extends Vue {
 
   mounted() {
     this.retrieveUnicorns();
+    console.log(this.retrieveUnicorns());
+    console.log(this.unicorn)
   }
 }
 </script>
