@@ -3,7 +3,7 @@
   <v-app id="inspire">
     <form>
       <v-text-field
-        v-model="currentUnicorn.name"
+        v-model="this.currentUnicorn.name"
         label="Name"
       ></v-text-field>
       <v-text-field
@@ -34,7 +34,7 @@ import Unicorn from '@/types/Unicorn'
 export default class EditUnicorn extends Vue {
     private currentUnicorn = {} as Unicorn;
 
-    getTutorial(id: string) {
+    getUnicorn(id: string) {
     UnicornDataService.get(id)
       .then((response: any) => {
         this.currentUnicorn = response.data;
@@ -55,6 +55,10 @@ export default class EditUnicorn extends Vue {
           console.log(e);
         });
     }
+
+    mounted() {
+    this.getUnicorn(this.$route.params.id);
+  }
 
 }
 </script>
