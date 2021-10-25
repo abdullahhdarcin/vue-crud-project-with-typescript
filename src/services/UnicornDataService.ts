@@ -17,8 +17,8 @@ class TutorialDataService {
     return http.put(`/unicorns/${id}`, data);
   }
 
-  delete(_id: string) {
-    return http.delete(`/unicorns/${_id}`);
+  delete(id: string) {
+    return http.delete(`/unicorns/${id}`);
   }
 
 //   deleteAll() {

@@ -43,16 +43,10 @@
         </v-dialog>
       </v-toolbar>
     </template>
-    <template v-slot:item.actions="{ item }">
-      <v-icon
-        small
-        class="mr-2"
-        to="'/unicorns/' + currentUnicorn.id "
-        @click="editItem(item)"
-      >
-        mdi-pencil
-      </v-icon>
-    </template>
+<template v-slot:[`item.actions`]="{ item }">
+            <v-icon small class="mr-2" @click="editTutorial(item.id)">mdi-pencil</v-icon>
+            <v-icon small @click.native="deleteUnicorn(item._id)">mdi-delete</v-icon>
+          </template>
     <template v-slot:no-data>
       <v-btn
         color="primary"
@@ -98,28 +92,20 @@ export default class UnicornList extends Vue {
       });
   }
 
+      refreshList() {
+        this.retrieveUnicorns();
+      }
 
-//   getUnicorn(id: string) {
-//     UnicornDataService.get(id)
-//       .then((response) => {
-//         this.currentUnicorn.id = response.data as string;
-//         console.log(response.data);
-//       })
-//       .catch((e) => {
-//         console.log(e);
-//       });
-//   }
+      deleteUnicorn(id: string) {
+      UnicornDataService.delete(id)
+        .then(() => {
+          this.refreshList();
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    }
 
-//   removeUnicorn(id: string) {
-//     UnicornDataService.delete(this.currentUnicorn.id)
-//       .then((response) => {
-//         console.log(response.data);
-//         this.$router.push({name: "unicorns"})
-//       })
-//       .catch((e) => {
-//         console.log(e);
-//       });
-//}
 
   mounted() {
     this.retrieveUnicorns();
