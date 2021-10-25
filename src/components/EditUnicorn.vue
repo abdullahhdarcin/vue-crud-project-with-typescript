@@ -1,24 +1,24 @@
 <template>
-<div id="app">
+<div v-if="currentUnicorn" id="app">
   <v-app id="inspire">
     <form>
       <v-text-field
-        v-model="unicorn.name"
+        v-model="currentUnicorn.name"
         label="Name"
       ></v-text-field>
       <v-text-field
-        v-model="unicorn.colour"
+        v-model="currentUnicorn.colour"
         label="Color"
       ></v-text-field>
       <v-text-field
-        v-model="unicorn.age"
+        v-model="currentUnicorn.age"
         label="Age"
       ></v-text-field>
       <v-btn
         class="mr-4"
-        @click="saveTutorial"
+        @click="updateUnicorn"
       >
-        submit
+        Update
       </v-btn>
     </form>
   </v-app>
@@ -28,37 +28,34 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import UnicornDataService from "@/services/UnicornDataService";
-import Unicorn from "@/types/Unicorn";
+import Unicorn from '@/types/Unicorn'
 
 @Component
-export default class AddUnicorn extends Vue {
-  private unicorn: Unicorn = {
-    id: "",
-    name: "",
-    age: 0,
-    colour: "",
-  };
+export default class EditUnicorn extends Vue {
+    private currentUnicorn = {} as Unicorn;
 
-  saveTutorial() {
-    let data = {
-      name: this.unicorn.name,
-      colour: this.unicorn.colour,
-      age:this.unicorn.age
-    };
-
-    console.log(data)
-
-    UnicornDataService.create(data)
+    getTutorial(id: string) {
+    UnicornDataService.get(id)
       .then((response: any) => {
-        this.unicorn.id = response.data.id as string;
+        this.currentUnicorn = response.data;
         console.log(response.data);
       })
       .catch((e) => {
         console.log(e);
       });
-
-      console.log(this.unicorn.name)
   }
+
+     updateUnicorn() {
+      UnicornDataService.update(this.currentUnicorn.id, this.currentUnicorn)
+        .then((response) => {
+          console.log(response.data);
+          console.log(this.currentUnicorn)
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    }
+
 }
 </script>
 
