@@ -1,5 +1,7 @@
 <template>
+
 <div v-if="currentUnicorn" id="app">
+  <h2></h2>
   <v-app id="inspire">
     <form>
       <v-text-field
@@ -13,10 +15,13 @@
       <v-text-field
         v-model="currentUnicorn.age"
         label="Age"
+        type="number"
       ></v-text-field>
       <v-btn
         class="mr-4"
         @click="updateUnicorn"
+        rounded
+        color="warning"
       >
         Update
       </v-btn>
@@ -55,8 +60,7 @@ export default class EditUnicorn extends Vue {
 
       UnicornDataService.update(this.currentUnicorn._id, data)
         .then((response) => {
-          console.log(response.data);
-          console.log(this.currentUnicorn)
+          this.$router.push('/')
         })
         .catch((e) => {
           console.log(e);
@@ -65,21 +69,17 @@ export default class EditUnicorn extends Vue {
 
     mounted() {
     this.getUnicorn(this.$route.params.id);
-  }
+    }
 
 }
 </script>
 
 <style scoped>
-.submit-form {
-  max-width: 300px;
-  margin: auto;
-}
 
 #app{
   display: block;
   justify-content: center;
-  margin: 50px 200px 50px 200px;
+  margin: 50px 400px 50px 400px;
   
 }
 </style>

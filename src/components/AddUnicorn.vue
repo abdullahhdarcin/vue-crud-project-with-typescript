@@ -46,18 +46,15 @@ export default class AddUnicorn extends Vue {
       age:this.unicorn.age
     };
 
-    console.log(data)
-
     UnicornDataService.create(data)
       .then((response: any) => {
         this.unicorn._id = response.data.id as string;
         console.log(response.data);
+        this.$router.push('/')
       })
       .catch((e) => {
         console.log(e);
       });
-
-      console.log(this.unicorn.name)
   }
 }
 </script>

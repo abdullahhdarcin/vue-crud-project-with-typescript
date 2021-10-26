@@ -18,14 +18,15 @@
         >
           <template v-slot:activator="{ on, attrs }">
             <v-btn
-              color="primary"
-              dark
+              color="warning"
               class="mb-2"
               v-bind="attrs"
               v-on="on"
               to="/add"
+              rounded
+              
             >
-              New Item
+             + New Unicorn
             </v-btn>
           </template>
          
