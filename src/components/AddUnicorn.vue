@@ -17,8 +17,10 @@
       <v-btn
         class="mr-4"
         @click="saveTutorial"
+        rounded
+        color="warning"
       >
-        submit
+        Submit
       </v-btn>
     </form>
   </v-app>
@@ -60,15 +62,10 @@ export default class AddUnicorn extends Vue {
 </script>
 
 <style scoped>
-.submit-form {
-  max-width: 300px;
-  margin: auto;
-}
-
 #app{
   display: block;
   justify-content: center;
-  margin: 50px 200px 50px 200px;
+  margin: 50px 400px 50px 400px;
   
 }
 </style>

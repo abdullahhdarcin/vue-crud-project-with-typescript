@@ -109,6 +109,6 @@ export default class UnicornList extends Vue {
 
 <style lang="scss" scoped>
 .v-data-table{
-    margin:50px
+    margin:50px;
 }
 </style>
