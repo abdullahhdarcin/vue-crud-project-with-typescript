@@ -16,7 +16,7 @@
       ></v-text-field>
       <v-btn
         class="mr-4"
-        @click="saveTutorial"
+        @click="saveUnicorn"
         rounded
         color="warning"
       >
@@ -41,7 +41,7 @@ export default class AddUnicorn extends Vue {
     colour: "",
   };
 
-  saveTutorial() {
+  saveUnicorn() {
     let data = {
       name: this.unicorn.name,
       colour: this.unicorn.colour,
