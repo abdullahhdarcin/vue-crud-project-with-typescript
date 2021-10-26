@@ -51,7 +51,6 @@ export default class AddUnicorn extends Vue {
     UnicornDataService.create(data)
       .then((response: any) => {
         this.unicorn._id = response.data.id as string;
-        console.log(response.data);
         this.$router.push('/')
       })
       .catch((e) => {

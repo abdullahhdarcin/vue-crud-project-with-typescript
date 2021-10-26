@@ -1,6 +1,6 @@
 import http from "../http-common";
 
-class TutorialDataService {
+class UnicornDataService {
   getAll() {
     return http.get("/unicorns");
   }
@@ -20,14 +20,6 @@ class TutorialDataService {
   delete(id: string) {
     return http.delete(`/unicorns/${id}`);
   }
-
-//   deleteAll() {
-//     return http.delete(`/unicorns`);
-//   }
-
-//   findByTitle(title: string) {
-//     return http.get(`/unicorns?title=${title}`);
-//   }
 }
 
-export default new TutorialDataService();
+export default new UnicornDataService();

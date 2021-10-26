@@ -43,7 +43,7 @@ export default class EditUnicorn extends Vue {
     UnicornDataService.get(id)
       .then((response: any) => {
         this.currentUnicorn = response.data;
-        console.log(response.data);
+        
       })
       .catch((e) => {
         console.log(e);
