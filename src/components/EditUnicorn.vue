@@ -3,7 +3,7 @@
   <v-app id="inspire">
     <form>
       <v-text-field
-        v-model="this.currentUnicorn.name"
+        v-model="currentUnicorn.name"
         label="Name"
       ></v-text-field>
       <v-text-field
@@ -46,7 +46,14 @@ export default class EditUnicorn extends Vue {
   }
 
      updateUnicorn() {
-      UnicornDataService.update(this.currentUnicorn.id, this.currentUnicorn)
+       let data={
+         name:this.currentUnicorn.name,
+         age:this.currentUnicorn.age,
+         colour:this.currentUnicorn.colour
+
+       }
+
+      UnicornDataService.update(this.currentUnicorn._id, data)
         .then((response) => {
           console.log(response.data);
           console.log(this.currentUnicorn)

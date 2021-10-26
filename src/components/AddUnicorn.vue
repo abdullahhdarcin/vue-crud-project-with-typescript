@@ -33,7 +33,7 @@ import Unicorn from "@/types/Unicorn";
 @Component
 export default class AddUnicorn extends Vue {
   private unicorn: Unicorn = {
-    id: "",
+    _id: "",
     name: "",
     age: 0,
     colour: "",
@@ -50,7 +50,7 @@ export default class AddUnicorn extends Vue {
 
     UnicornDataService.create(data)
       .then((response: any) => {
-        this.unicorn.id = response.data.id as string;
+        this.unicorn._id = response.data.id as string;
         console.log(response.data);
       })
       .catch((e) => {

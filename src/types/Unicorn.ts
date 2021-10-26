@@ -1,5 +1,5 @@
 export default interface Unicorn {
-    id: string;
+    _id: string;
     name: string;
     age: number;
     colour: string;
